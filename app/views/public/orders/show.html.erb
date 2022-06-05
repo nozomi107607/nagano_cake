@@ -1,0 +1,77 @@
+<div class="container">
+  <div class="row">
+    <h4>注文履歴詳細</h4>
+  </div>
+  <div class="row">
+    <div class="col-6">
+      <table class="table table-inverse table-bordered">
+        <thead>
+          <tr>
+            <th>注文日</th>
+            <th><%= @order.created_at.strftime('%Y/%m/%d %H:%M') %></th>
+          </tr>
+          <tr>
+            <th>配送先</th>
+            <th><%= @order.postal_code %>
+            　　<%= @order.address %>
+            　　<%= @order.name %></th>
+          </tr>
+          <tr>
+            <th>支払方法</th>
+            <th><%= Order.payment_methods_i18n[@order.payment_method] %></th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+    <div class="col-4">
+      <table class="table table-inverse table-bordered">
+        <thead>
+          <% @order.order_details.each do |order_item| %>
+            <% @total +=  order_item.subtotal %>
+          <% end %>
+          <tr>
+            <th>商品合計</th>
+            <th><%= @total  %></th>
+
+          </tr>
+          <tr>
+            <th>配送料</th>
+            <th>800</th>
+          </tr>
+          <tr>
+            <th>ご請求金額</th>
+            <th><%= @order.total_payment %></th>
+          </tr>
+        </thead>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-8">
+      <% @order.order_details.each do |order_item| %>
+      <table class="table table-inverse table-bordered">
+        <thead>
+
+          <tr>
+            <th>商品</th>
+            <th><%= order_item.item.name %></th>
+          </tr>
+          <tr>
+            <th>単価（税込）</th>
+            <th><%= order_item.item.with_tax_price %></th>
+          </tr>
+          <tr>
+            <th>個数</th>
+            <th><%= order_item.amount %></th>
+          </tr>
+          <tr>
+            <th>小計</th>
+            <th><%= order_item.subtotal %></th>
+          </tr>
+
+        </thead>
+      </table>
+      <% end %>
+    </div>
+  </div>
+</div>

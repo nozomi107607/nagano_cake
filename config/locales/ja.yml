@@ -1,0 +1,18 @@
+  ja:
+    enums:
+      customer:
+        is_deleted:
+         non_active: "退会"
+         active: "有効"
+      order:
+        order_status:
+          waiting: "支払待ち"
+          paid_up: "支払済み"
+          preparing: "発送準備中"
+          shipped: "発送済み"
+        payment_method:
+          credit_card: "クレジットカード"
+          transfer: "銀行振込"
+    time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
