@@ -24,7 +24,7 @@
                 <td><%= cart_item.item.with_tax_price %></td>
                 <%= form_with model: @cart_item, url: update_cart_item_path(cart_item.id), method: :patch do |f| %>
               　<td>
-              　  <%= f.select :amount, [1,2,3,4,5,6,7,8,9,10],class: 'form-control' %>
+              　  <%= f.select :amount, options_for_select([1,2,3,4,5,6,7,8,9,10], {selected: cart_item.amount.to_i}),class: 'form-control' %>
               　 <%= f.submit "変更", class: 'btn btn-success btn-sm' %>
               　</td>
               　<% end %>
